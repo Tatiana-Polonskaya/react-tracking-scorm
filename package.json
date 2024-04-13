@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://tatiana-polonskaya.github.io/react-tracking-scorm/",
+  "homepage": "https://tatiana-polonskaya.github.io/react-tracking-scorm",
   "scripts": {
     "start": "vite",
     "build": "vite build",
