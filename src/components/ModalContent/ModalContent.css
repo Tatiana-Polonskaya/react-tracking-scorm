@@ -1,0 +1,76 @@
+.modal-conteiner {
+}
+
+.modal-title {
+  color: #4b5f8a;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Onest";
+  font-style: normal;
+}
+.modal-table {
+  display: flex;
+  flex-flow: column nowrap;
+
+  border-top: 1px solid #4b5f8a;
+  border-bottom: 1px solid #4b5f8a;
+  margin-bottom: 10px;
+}
+.modal-table-row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  align-items: center;
+  gap: 10px;
+}
+
+.hovered:hover {
+  background-color: #e9f0f7;
+  cursor: pointer;
+}
+
+.checked {
+  background-color: #bcffb8;
+}
+.modal-table-header {
+  flex-grow: 1;
+  padding: 0 10px;
+
+  font-weight: 600;
+  font-size: 16px;
+  font-family: "Onest";
+}
+.modal-table-cell {
+  flex-grow: 1;
+  padding: 0 10px;
+
+  font-weight: 400;
+  font-size: 14px;
+  font-family: "Onest";
+}
+.modal-table-button {
+  flex-grow: 1;
+  padding: 10px;
+  cursor: pointer;
+
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: "Onest";
+  font-style: normal;
+  border: none;
+  border-radius: 10px;
+}
+
+.bg-green {
+  background-color: #bcffb8;
+}
+.bg-green:hover {
+  background-color: #aaf8a8;
+}
+.bg-red {
+  background-color: #d0d8e8;
+}
+.bg-red:hover {
+  background-color: #bdd0f8;
+}

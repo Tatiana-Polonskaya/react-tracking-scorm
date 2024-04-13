@@ -1,0 +1,41 @@
+.my-table {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #d0d8e8;
+  margin-bottom: 10px;
+}
+
+.my-table-col {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+}
+
+.my-table-hcol {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1;
+  border-start-start-radius: 25px;
+  border-end-start-radius: 25px;
+  background-color: #f3f5f9;
+}
+
+.my-table-hcell {
+  padding: 15px;
+  color: #4b5f8a;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: "Onest";
+  font-style: normal;
+}
+
+.my-table-cell {
+  padding: 15px;
+  color: #4b5f8a;
+  font-weight: 400;
+  font-size: 18px;
+  font-family: "Onest";
+  font-style: normal;
+}

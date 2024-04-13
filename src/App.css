@@ -1,0 +1,31 @@
+.custom-flex-block {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 50px;
+  margin-bottom: 20px;
+  gap: 50px;
+  border: 2px solid #d0d8e8;
+  border-radius: 15px;
+}
+
+.custom-col {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.custom-col-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h4 {
+    font-size: large;
+    font-weight: 600;
+  }
+}
+
+.custom-col-content {
+  width: 100%;
+}
