@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/react-tracking-scorm/",
   plugins: [react()],
   build: {
-    outDir: "../dist",
+    outDir: "./dist",
   },
 });
