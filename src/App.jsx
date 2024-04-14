@@ -6,9 +6,8 @@ import { CloudDownloadOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import ModalContent from "./components/ModalContent/ModalContent";
-import axios from "axios";
 
-import { Axios } from "./api";
+import { getListScorms } from "./api";
 import "./App.css";
 
 const customStyles = {
@@ -31,17 +30,15 @@ function App() {
 
   useEffect(() => {
     if (!listScorms) {
-      axios
-        .get(`http://5.159.101.177`, {
-          withCredentials: true,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        })
-        .then((response) => {
-          console.log("response", response.data);
-          setListScorms(response.data);
-        });
+      const response = async () => {
+        const res = await getListScorms();
+        if (res.ok) {
+          const json = await res.json();
+          console.log("getListScorms", json);
+          setListScorms(json);
+        }
+      };
+      response();
     }
   }, []);
 

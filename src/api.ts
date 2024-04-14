@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const BASE_URL = "http://5.159.101.177";
 
-
 const headers = { "Content-Type": "application/json; charset=utf-8" };
 
 export async function loadArchive(file: File) {
@@ -16,14 +15,11 @@ export async function loadArchive(file: File) {
 }
 
 export async function getListScorms() {
-  return await axios.get(`${BASE_URL}/`, {}).then((response) => {
+    const response = await fetch(BASE_URL + "/", {
+      method: "GET",
+      headers: headers,
+    });
     return response;
-  });
-  //   const response = await fetch(BASE_URL + "/", {
-  //     method: "GET",
-  //     headers: headers,
-  //   });
-  //   return response;
 }
 
 export async function getScorm(id: string) {
