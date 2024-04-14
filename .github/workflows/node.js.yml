@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: CI/CD
+name: CI
 
 on:
   push:
@@ -17,7 +14,6 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - name: Checkout repository
@@ -30,20 +26,38 @@ jobs:
         
     - name: Install dependencies
       run: npm install --legacy-peer-deps
-
-
       
     - name: Build
       run: npm run build
 
-    - name: Deploy
-      run: |
-        git config --global user.name $user_name
-        git config --global user.email $user_email
-        git remote set-url origin https://${github_token}@github.com/${repository}
-        npm run deploy
-      env:
-        user_name: 'tatiana-polonskaia'
-        user_email: 'tatiana.polonskaia@gmail.com'
-        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-        repository: ${{ github.repository }}
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Build
+        path: dist
+      
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: Build
+        path: dist
+        
+    - name: Setup Yandex CLI
+      uses: avtocod/yc-actions/cli@master
+      with:
+        yc-api-key: ${{ secrets.YC_TOKEN }}
+        yc-folder-id: b1guv2o6d0bqb1qg866u
+        yc-cloud-id: b1gti8m4j4n4veck1g1u
+
+    - name: Upload files to Object Storage
+      id: s3-upload
+      uses: yc-actions/yc-obj-storage-upload@v2
+      with: 
+        yc-sa-json-credentials: ${{ secrets.YC_TOKEN }}
+        bucket: scormbucket
+        root: ./src
+        include: | 
+         *.js
+         package.json
+        exclude: | 
+         **/*.ts

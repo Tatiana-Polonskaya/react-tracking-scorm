@@ -1,0 +1,35 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: Build
+        path: dist
+
+    - name: Install Yandex CLI
+      run: |
+        curl https://storage.yandexcloud.net/yandexcloud-yc-install/install.sh | bash
+      env:
+        YC_TOKEN: ${{ secrets.YC_TOKEN }}
+
+    - name: Deploy to Yandex Object Storage
+      run: |
+        yc config set token $YC_TOKEN
+        yc s3 cp --recursive ./dist s3://scormbucket
+      env:
+        YC_TOKEN: ${{ secrets.YC_TOKEN }}
+        BUCKET_NAME: scormbucket
