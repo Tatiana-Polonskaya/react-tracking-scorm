@@ -2,10 +2,6 @@ import axios from "axios";
 
 export const BASE_URL = "http://5.159.101.177";
 
-export const Axios = axios.create({
-  baseURL: BASE_URL,
-  withCredentials: true,
-});
 
 const headers = { "Content-Type": "application/json; charset=utf-8" };
 
