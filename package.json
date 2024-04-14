@@ -15,6 +15,7 @@
   "dependencies": {
     "@upandgo/react-scorm-provider": "^0.1.13",
     "antd": "^5.16.1",
+    "axios": "^1.6.8",
     "gh-pages": "^6.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,5 +31,5 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
   },
-  "proxy": "http://5.159.101.177/"
+  "proxy": "http://5.159.101.177"
 }

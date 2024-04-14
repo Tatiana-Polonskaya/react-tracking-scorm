@@ -6,8 +6,9 @@ import { CloudDownloadOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import ModalContent from "./components/ModalContent/ModalContent";
+import axios from "axios";
 
-import { getListScorms } from "./api";
+import { Axios } from "./api";
 import "./App.css";
 
 const customStyles = {
@@ -30,20 +31,30 @@ function App() {
 
   useEffect(() => {
     if (!listScorms) {
-      const response = async () => {
-        const res = await getListScorms();
-        if (res.ok) {
-          const json = await res.json();
-          console.log("getListScorms", json);
-          setListScorms(json);
-        }
-      };
-      response();
+      axios
+        .get(`http://5.159.101.177`, {
+          withCredentials: true,
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then((response) => {
+          console.log("response", response.data);
+          setListScorms(response.data);
+        });
     }
   }, []);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [leftScorm, setLeftScorm] = useState();
+  const [leftScorm, setLeftScorm] = useState({
+    id: "d5ef8cb4-bfa4-4836-894a-bab011144be9",
+    title: "testing",
+    link: "http://5.159.101.177/static/e1429407-5c14-429a-9700-613ca72693e6/index.html",
+    time_download: 0.026196718215942383,
+    time_render: 0,
+    archive_size: 196211,
+    final_size: 652671,
+  });
   const [rightScorm, setRightScorm] = useState();
   const [isRightScorm, setIsRightScorm] = useState(false);
 
