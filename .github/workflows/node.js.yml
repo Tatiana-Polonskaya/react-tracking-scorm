@@ -41,16 +41,17 @@ jobs:
       with:
         name: Build
         path: dist
+        
+    - name: Setup Yandex CLI
+      uses: avtocod/yc-actions/cli@master
+      with:
+        yc-api-key: ${{ secrets.YC_TOKEN }}
+        yc-folder-id: b1guv2o6d0bqb1qg866u
+        yc-cloud-id: b1gti8m4j4n4veck1g1u
 
-    - name: Install Yandex CLI
-      run: |
-        curl https://storage.yandexcloud.net/yandexcloud-yc-install/install.sh | bash
-      env:
-        YC_TOKEN: ${{ secrets.YC_TOKEN }}
 
     - name: Deploy to Yandex Object Storage
       run: |
-        yc config set token $YC_TOKEN
         yc s3 cp --recursive ./dist s3://scormbucket
       env:
         YC_TOKEN: ${{ secrets.YC_TOKEN }}
