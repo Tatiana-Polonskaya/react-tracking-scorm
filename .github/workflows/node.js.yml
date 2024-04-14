@@ -49,10 +49,15 @@ jobs:
         yc-folder-id: b1guv2o6d0bqb1qg866u
         yc-cloud-id: b1gti8m4j4n4veck1g1u
 
-
-    - name: Deploy to Yandex Object Storage
-      run: |
-        yc s3 cp --recursive ./dist s3://scormbucket
-      env:
-        YC_TOKEN: ${{ secrets.YC_TOKEN }}
-        BUCKET_NAME: scormbucket
+    - name: Upload files to Object Storage
+      id: s3-upload
+      uses: yc-actions/yc-obj-storage-upload@v2
+      with: 
+        yc-sa-json-credentials: ${{ secrets.YC_TOKEN }}
+        bucket: scormbucket
+        root: ./src
+        include: | 
+         *.js
+         package.json
+        exclude: | 
+         **/*.ts
