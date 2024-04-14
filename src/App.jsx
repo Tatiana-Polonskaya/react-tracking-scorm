@@ -46,15 +46,7 @@ function App() {
   }, []);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [leftScorm, setLeftScorm] = useState({
-    id: "d5ef8cb4-bfa4-4836-894a-bab011144be9",
-    title: "testing",
-    link: "http://5.159.101.177/static/e1429407-5c14-429a-9700-613ca72693e6/index.html",
-    time_download: 0.026196718215942383,
-    time_render: 0,
-    archive_size: 196211,
-    final_size: 652671,
-  });
+  const [leftScorm, setLeftScorm] = useState();
   const [rightScorm, setRightScorm] = useState();
   const [isRightScorm, setIsRightScorm] = useState(false);
 
