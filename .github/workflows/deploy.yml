@@ -17,7 +17,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
-        name: dist
+        name: Build
         path: dist
 
     - name: Install Yandex CLI
